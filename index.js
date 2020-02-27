@@ -4,7 +4,7 @@ const span = document.getElementsByClassName("close")[0];
 
 // initial fetch
 function allDogs(){
-    fetch("http://localhost:3000/dogs")
+    fetch("https://we-heart-dogs.herokuapp.com/dogs")
     .then(r => r.json())
     .then(allDogs => {
         allDogs.map(dog => {
@@ -60,7 +60,7 @@ let addEventListenerToDogImg = (dog, dogImg) => {
     })
 }
 let newLike = async (dog) => {
-    let response = await fetch('http://localhost:3000/likes', {
+    let response = await fetch('https://we-heart-dogs.herokuapp.com/likes', {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -76,7 +76,7 @@ let newLike = async (dog) => {
 // show modal display function
 let showDog = (thisDog) => {
     // get modal
-    fetch(`http://localhost:3000/dogs/${thisDog.id}`)
+    fetch(`https://we-heart-dogs.herokuapp.com/dogs/${thisDog.id}`)
     .then( r => r.json())
     .then( dog => {
         let modalContent = document.querySelector("#dog-modal")
@@ -217,7 +217,7 @@ let addEventListenerToAddRating = (ratingInput, submitButton, modalRating, dog) 
 
                 // let newRating = (parseInt(currentRating) + parseInt((ratingInput.value)/10))
                 let newRating = ratingInput.value
-                fetch("http://localhost:3000/ratings/", {
+                fetch("https://we-heart-dogs.herokuapp.com/ratings/", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -241,7 +241,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
     let commentAuthor = authorInput.value
     let commentContent = contentInput.value
 
-    let response = await fetch(`http://localhost:3000/comments`, {
+    let response = await fetch(`https://we-heart-dogs.herokuapp.com/comments`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -275,7 +275,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
 
     // nav bar: highest rated
     let topDogs = () => {
-        fetch("http://localhost:3000/dogs")
+        fetch("https://we-heart-dogs.herokuapp.com/dogs")
             .then(r => r.json())
             .then(allDogs => {
                 let sortedDogs = [...allDogs].sort((a, b) => (a.ratings.reduce((result, rating) => (result + rating.value), 0) / a.ratings.length < b.ratings.reduce((result, rating) => (result + rating.value), 0) / b.ratings.length) ? 1 : -1)
@@ -296,7 +296,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
 
     // nav bar: most popular
     let mostPopularDogs = () => {
-        fetch("http://localhost:3000/dogs")
+        fetch("https://we-heart-dogs.herokuapp.com/dogs")
             .then(r => r.json())
             .then(allDogs => {
                 let sortedDogs = [...allDogs].sort((a, b) => (a.likes.length < b.likes.length) ? 1 : -1)
@@ -317,7 +317,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
 
     // nav bar: most commented
     let mostCommentedDogs =  () => {
-        fetch("http://localhost:3000/dogs")
+        fetch("https://we-heart-dogs.herokuapp.com/dogs")
             .then(r => r.json())
             .then(allDogs => {
                 let sortedDogs = [...allDogs].sort((a, b) => (a.comments.length < b.comments.length) ? 1 : -1)
