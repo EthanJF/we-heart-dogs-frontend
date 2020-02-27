@@ -3,8 +3,8 @@
 <p>Recreated an Instagram-style web application that allowed you to rate and comment on various dog pictures</p>
 </blockquote>
 <hr></hr>
-  <!-- <h3><a href="***INSERT HEROKU / NOW LINK HERE***" >Check it out on Heroku!</a></h3> -->
-<!-- <hr></hr> -->
+  <h3><a href="https://we-heart-dogs.netlify.com/">Check it out on Netlify!</a></h3>
+<hr></hr>
 <p><strong>Built With:</strong></p>
 <ul>
   <li>Vanilla JavaScript</li>
