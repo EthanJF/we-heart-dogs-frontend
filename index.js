@@ -1,10 +1,11 @@
 const dogListDiv = document.querySelector("#dog-list")
 const dogModal = document.querySelector(".modal")
 const span = document.getElementsByClassName("close")[0];
+const fetchUrl = "http://localhost:3000"
 
 // initial fetch
 function allDogs(){
-    fetch("https://we-heart-dogs.herokuapp.com/dogs")
+    fetch(`${fetchUrl}/dogs`)
     .then(r => r.json())
     .then(allDogs => {
         allDogs.map(dog => {
@@ -60,7 +61,7 @@ let addEventListenerToDogImg = (dog, dogImg) => {
     })
 }
 let newLike = async (dog) => {
-    let response = await fetch('https://we-heart-dogs.herokuapp.com/likes', {
+    let response = await fetch(`${fetchUrl}/likes`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -76,7 +77,7 @@ let newLike = async (dog) => {
 // show modal display function
 let showDog = (thisDog) => {
     // get modal
-    fetch(`https://we-heart-dogs.herokuapp.com/dogs/${thisDog.id}`)
+    fetch(`${fetchUrl}/dogs/${thisDog.id}`)
     .then( r => r.json())
     .then( dog => {
         let modalContent = document.querySelector("#dog-modal")
@@ -96,7 +97,6 @@ let showDog = (thisDog) => {
         // add like button
         let likeButton = document.createElement("button")
         likeButton.setAttribute("id", 'like-button')
-        likeButton.setAttribute("class", 'like-button')
         likeButton.innerText = "♥️"
 
         likeButton.addEventListener("mousedown", () => {
@@ -113,10 +113,11 @@ let showDog = (thisDog) => {
 
         // add rating to modal
         // let currentRating = (typeof dog.rating.value === "number") ? dog.rating.value : 10
-        let currentRating = Math.round((dog.ratings.reduce((result, rating) => (result + rating.value), 0) / dog.ratings.length) * 10) / 10
+        let currentRating = Math.round((dog.ratings.reduce((result, rating) => (result + rating.value), 0) / dog.ratings.length) * 10 / 10)
         let modalRating = document.createElement('h3')
         modalRating.setAttribute("class", "modal-rating")
         modalRating.innerText = `Rating: ${currentRating}/10`
+
 
         // add rate dog link to modal
 
@@ -140,7 +141,6 @@ let showDog = (thisDog) => {
         let comments = dog.comments.sort((a, b) => a.id - b.id)
         comments.forEach(comment => {
             // create li
-            debugger
             let commentLi = document.createElement('li')
             commentLi.innerText = `${comment.author} said: ${comment.content}`
 
@@ -212,12 +212,12 @@ let addEventListenerToAddRating = (ratingInput, submitButton, modalRating, dog) 
             } 
             else {
                 // let currentRating = (typeof dog.rating.value === "number") ? dog.rating.value : 10
-                let ratingTotal = dog.ratings.reduce((result, rating) => (result + rating.value), 0)
+                let ratingTotal = Math.round(dog.ratings.reduce((result, rating) => (result + rating.value), 0))
 
 
                 // let newRating = (parseInt(currentRating) + parseInt((ratingInput.value)/10))
                 let newRating = ratingInput.value
-                fetch("https://we-heart-dogs.herokuapp.com/ratings/", {
+                fetch(`${fetchUrl}/ratings/`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -241,7 +241,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
     let commentAuthor = authorInput.value
     let commentContent = contentInput.value
 
-    let response = await fetch(`https://we-heart-dogs.herokuapp.com/comments`, {
+    let response = await fetch(`${fetchUrl}/comments`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -275,7 +275,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
 
     // nav bar: highest rated
     let topDogs = () => {
-        fetch("https://we-heart-dogs.herokuapp.com/dogs")
+        fetch(`${fetchUrl}/dogs`)
             .then(r => r.json())
             .then(allDogs => {
                 let sortedDogs = [...allDogs].sort((a, b) => (a.ratings.reduce((result, rating) => (result + rating.value), 0) / a.ratings.length < b.ratings.reduce((result, rating) => (result + rating.value), 0) / b.ratings.length) ? 1 : -1)
@@ -296,7 +296,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
 
     // nav bar: most popular
     let mostPopularDogs = () => {
-        fetch("https://we-heart-dogs.herokuapp.com/dogs")
+        fetch(`${fetchUrl}/dogs`)
             .then(r => r.json())
             .then(allDogs => {
                 let sortedDogs = [...allDogs].sort((a, b) => (a.likes.length < b.likes.length) ? 1 : -1)
@@ -317,7 +317,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
 
     // nav bar: most commented
     let mostCommentedDogs =  () => {
-        fetch("https://we-heart-dogs.herokuapp.com/dogs")
+        fetch(`${fetchUrl}/dogs`)
             .then(r => r.json())
             .then(allDogs => {
                 let sortedDogs = [...allDogs].sort((a, b) => (a.comments.length < b.comments.length) ? 1 : -1)
