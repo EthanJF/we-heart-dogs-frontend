@@ -63,8 +63,8 @@ body {
 
 .modal-img {
   /* width: 50%; */
-  width: 35vw;
-  height: 100%;
+  width: 60vw;
+  height: auto;
   object-fit: cover;
   border: 5px #a2a8d3 solid;
   float: left;
@@ -90,10 +90,17 @@ body {
     margin: 1.15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 70%;
-    height: 90%;
+    width: 85vw;
+    height: 80vh;
     text-align: center;
     overflow-y: auto;
+    display: flex;
+    flex-wrap: flex;
+  }
+
+  #modal-right {
+    float: right;
+    margin-left: 4vw;
   }
   
   .close {
@@ -112,19 +119,18 @@ body {
 
   #comments-ul {
     list-style-type: none;
-    max-width: 70%;
-    padding-left: 15%;
-    padding-right: 1%;
-    margin-left: 40%;
+    max-width: 20vw;
+    margin-top: 2vw;
     text-align: left;
+    /* float: right; */
   }
 
   #comments-ul li {
-    padding: 2%;
+    padding: 0.25vw;
   }
 
   .comment-form input, textarea, .rating-input {
-    width: 20vw;
+    width: 15vw;
     margin: 2px;
     border-radius: 1%;
     border: none;

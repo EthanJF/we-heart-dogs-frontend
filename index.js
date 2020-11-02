@@ -129,7 +129,6 @@ let showDog = (thisDog) => {
         ratingSubmitButton.innerText = "Rate This Dog"
         ratingSubmitButton.setAttribute("class", "submit-button")
 
-
         //add event listener to addRating
         addEventListenerToAddRating(ratingInput, ratingSubmitButton, modalRating, dog)
 
@@ -155,10 +154,12 @@ let showDog = (thisDog) => {
         let lineBreak3 = document.createElement("br")
         let lineBreak4 = document.createElement("br")
 
-
-        modalContent.append(modalImg, modalLikes, likeButton, lineBreak4, modalRating, ratingInput, lineBreak1, ratingSubmitButton, lineBreak2, lineBreak3)
-        newComment(dog, modalContent)
-        modalContent.append(commentsUl)
+        let modalRight = document.createElement("div")
+        modalRight.setAttribute("id", "modal-right")
+        modalRight.append(modalLikes, likeButton, lineBreak4, modalRating, ratingInput, lineBreak1, ratingSubmitButton, lineBreak2, lineBreak3)
+        modalContent.append(modalImg, modalRight)
+        newComment(dog, modalContent, modalRight)
+        modalRight.append(commentsUl)
 
         dogModal.style.display = "block";
     })
@@ -166,7 +167,7 @@ let showDog = (thisDog) => {
 }
 
 // add comment 
-let newComment = (dog, modalContent) => {
+let newComment = (dog, modalContent, modalRight) => {
     // load comment form
     // load author input
     let commentForm = document.createElement("form")
@@ -191,7 +192,8 @@ let newComment = (dog, modalContent) => {
             alert("Please enter a comment!");
             return false;
         } else {
-            createNewComment(dog, modalContent, authorInput, contentInput)
+            createNewComment(dog, modalContent, authorInput, contentInput, modalRight)
+            commentForm.reset()
         }
     })
     let lineBreak1 = document.createElement("br")
@@ -199,7 +201,7 @@ let newComment = (dog, modalContent) => {
 
     commentForm.append(authorInput, lineBreak1, contentInput, lineBreak2, commentSubmitButton)
   
-    modalContent.append(commentForm)
+    modalRight.append(commentForm)
 }
 
   // rating event handler      
@@ -230,14 +232,15 @@ let addEventListenerToAddRating = (ratingInput, submitButton, modalRating, dog) 
                 })
                 .then(r => r.json())
                 .then(resObj => {
-                    modalRating.innerText = `${Math.round((ratingTotal + resObj.value) / (dog.ratings.length + 1) * 10) / 10}/10`
+                    modalRating.innerText = `Rating: ${Math.round((ratingTotal + resObj.value) / (dog.ratings.length + 1) * 10 / 10)}/10`
+                    ratingInput.value = ""
                 })
             }
         })
 }
 
 // create comment
-let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
+let createNewComment = async (dog, modalContent, authorInput, contentInput, modalRight) => {
     let commentAuthor = authorInput.value
     let commentContent = contentInput.value
 
@@ -259,7 +262,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
     newCommentLi.innerText = `${createdComment.author} said: ${createdComment.content}`
     let commentsUl = document.querySelector("#comments-ul")
     commentsUl.append(newCommentLi)
-    modalContent.append(commentsUl)
+    modalRight.append(commentsUl)
 }   
 
     // initial load -- displays all fetched dogs
