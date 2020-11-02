@@ -1,14 +1,21 @@
+:root {
+  --lightest-color: #f1d4d4;
+  --light-color: #ddb6c6;
+  --dark-color: #ac8daf;
+  --darkest-color: #484c7f;
+}
+
 body {
-    background-color: #e7eaf6;
+    background-color: var(--lightest-color);
     font-family: 'IBM Plex Sans', sans-serif;
-    color: #38598b;
+    color: var(--darkest-color);
 }
 
 #dog-list {
     margin-top: 4vw;
     margin-right: 1%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: minmax(25vw, auto);
     grid-gap: 15px;
 }
@@ -21,7 +28,7 @@ body {
   margin-top: 8px;
   margin-right: 75px;
   margin-left: 0;
-  color: #113f67;
+  color: var(--darkest-color);
   font-family: 'Patua One', cursive;
   font-size: 2.15vw;
 }
@@ -36,7 +43,7 @@ body {
   grid-template-columns: repeat(4, 1fr);
   margin: 0;
   overflow: hidden;
-  background-color: #e7eaf6;
+  background-color: var(--lightest-color);
   position: fixed;
   top: 0;
   width: 100%;
@@ -52,8 +59,7 @@ body {
 .dog-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border: 5px #a2a8d3 solid;
+  border: 5px var(--dark-color) solid;
   margin: 5px;
 }
 
@@ -62,11 +68,9 @@ body {
 }
 
 .modal-img {
-  /* width: 50%; */
   width: 60vw;
   height: auto;
-  object-fit: cover;
-  border: 5px #a2a8d3 solid;
+  border: 5px var(--dark-color) solid;
   float: left;
 }
 
@@ -86,21 +90,21 @@ body {
   }
   
   .modal-content {
-    background-color: #e7eaf6;
+    background-color: var(--lightest-color);
     margin: 1.15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 85vw;
-    height: 80vh;
+    height: 90vh;
     text-align: center;
-    overflow-y: auto;
+    overflow: auto;
     display: flex;
     flex-wrap: flex;
   }
 
   #modal-right {
     float: right;
-    margin-left: 4vw;
+    margin-left: 2vw;
   }
   
   .close {
@@ -122,11 +126,11 @@ body {
     max-width: 20vw;
     margin-top: 2vw;
     text-align: left;
-    /* float: right; */
   }
 
   #comments-ul li {
     padding: 0.25vw;
+    font-size: 1rem;
   }
 
   .comment-form input, textarea, .rating-input {
@@ -135,17 +139,17 @@ body {
     border-radius: 1%;
     border: none;
     font-family: 'IBM Plex Sans', sans-serif;
-    border: 2px #a2a8d3 solid;
+    border: 2px var(--dark-color) solid;
   }
 
   #like-button, .submit-button {
     font-family: 'IBM Plex Sans', sans-serif !important;
-    background-color: #a2a8d3;
-    color: #e7eaf6;
-    height: 23px;
-    width: 25%;
+    background-color: var(--dark-color);
+    color: var(--lightest-color);
+    height: 1rem;
+    width: 10vw;
     text-decoration: none;
-    font-size: 1vw;;
+    font-size: 0.9rem;
   }
 
   #like-button, .submit-button:hover {
@@ -156,7 +160,7 @@ body {
     width: 10vw;
     border-radius: 1%;
     border: none;
-    border: 2px #38598b solid;
+    border: 2px var(--dark-color) solid;
     height: 2vw;
   }
 
@@ -169,7 +173,7 @@ body {
   }
   
 #like-button:focus{
-    outline: 3px dashed #a2a8d3;
+    outline: 3px dashed var(--dark-color);
   }
 
  #heart {
@@ -185,16 +189,16 @@ body {
   z-index: 99;
   border: none;
   outline: none;
-  background-color: #a2a8d3;
-  color: #e7eaf6;
+  background-color: var(--dark-color);
+  color: var(--lightest-color);
   cursor: pointer;
   padding: 15px;
   font-size: 18px;
 }
 
 #myBtn:hover {
-  color: #38598b;
-  background-color: #e7eaf6;
+  color: var(--dark-color);
+  background-color: var(var(--lightest-color))
 }
 
 #popular-dogs, #top-dogs {
