@@ -1,8 +1,8 @@
 :root {
-  --lightest-color: #f1d4d4;
-  --light-color: #ddb6c6;
-  --dark-color: #ac8daf;
-  --darkest-color: #484c7f;
+  --lightest-color: #f4f7f7;
+  --light-color: #aacfd0;
+  --dark-color: #79a8a9;
+  --darkest-color: #1f4e5f;
 }
 
 body {
@@ -15,9 +15,9 @@ body {
     margin-top: 4vw;
     margin-right: 1%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: minmax(25vw, auto);
-    grid-gap: 15px;
+    grid-gap: 1vw;
 }
 
 #logo {
@@ -57,8 +57,10 @@ body {
 }
 
 .dog-img {
+  display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
   border: 5px var(--dark-color) solid;
   margin: 5px;
 }
@@ -70,7 +72,8 @@ body {
 .modal-img {
   width: 60vw;
   height: auto;
-  border: 5px var(--dark-color) solid;
+  object-fit: contain;
+  /* border: 5px var(--dark-color) solid; */
   float: left;
 }
 
@@ -86,7 +89,6 @@ body {
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
     text-align: center;
-
   }
   
   .modal-content {
@@ -100,6 +102,7 @@ body {
     overflow: auto;
     display: flex;
     flex-wrap: flex;
+    border: 5px var(--dark-color) solid;
   }
 
   #modal-right {
