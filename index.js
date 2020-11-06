@@ -14,6 +14,21 @@ function allDogs(){
     })
 }
 
+//Get the button:
+mybutton = document.getElementById("myBtn");
+mybutton.addEventListener("click", topFunction)
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () { scrollFunction() };
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+    } else {
+        mybutton.style.display = "none";
+    }
+}
+
 // click to turn modal off
 span.onclick = function () {
     dogModal.style.display = "none";
@@ -154,20 +169,26 @@ let showDog = (thisDog) => {
         let lineBreak3 = document.createElement("br")
         let lineBreak4 = document.createElement("br")
 
+        let modalResponsiveBottomLeft = document.createElement("div")
+        modalResponsiveBottomLeft.setAttribute("id", "modal-responsive-bottom-left")
+        modalResponsiveBottomLeft.append(modalLikes, likeButton, lineBreak4, modalRating, ratingInput, lineBreak1, ratingSubmitButton, lineBreak2, lineBreak3)
+
         let modalRight = document.createElement("div")
         modalRight.setAttribute("id", "modal-right")
-        modalRight.append(modalLikes, likeButton, lineBreak4, modalRating, ratingInput, lineBreak1, ratingSubmitButton, lineBreak2, lineBreak3)
+        modalRight.append(modalResponsiveBottomLeft)
         modalContent.append(modalImg, modalRight)
-        newComment(dog, modalContent, modalRight)
+        newComment(dog, modalContent, modalResponsiveBottomLeft, modalRight)
         modalRight.append(commentsUl)
 
         dogModal.style.display = "block";
+        mybutton.style.display = "none";
+
     })
 
 }
 
 // add comment 
-let newComment = (dog, modalContent, modalRight) => {
+let newComment = (dog, modalContent, modalResponsiveBottomLeft, modalRight) => {
     // load comment form
     // load author input
     let commentForm = document.createElement("form")
@@ -200,8 +221,9 @@ let newComment = (dog, modalContent, modalRight) => {
     let lineBreak2 = document.createElement("br")
 
     commentForm.append(authorInput, lineBreak1, contentInput, lineBreak2, commentSubmitButton)
-  
-    modalRight.append(commentForm)
+    
+    modalResponsiveBottomLeft.append(commentForm)
+    modalRight.append(modalResponsiveBottomLeft)
 }
 
   // rating event handler      
@@ -338,23 +360,6 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput, moda
 
     let mostCommentedDogsButton = document.querySelector("#commented-dogs")
     mostCommentedDogsButton.addEventListener("click",mostCommentedDogs)
-
-
-
-//Get the button:
-mybutton = document.getElementById("myBtn");
-mybutton.addEventListener("click", topFunction)
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function () { scrollFunction() };
-
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.display = "block";
-    } else {
-        mybutton.style.display = "none";
-    }
-}
 
 
 

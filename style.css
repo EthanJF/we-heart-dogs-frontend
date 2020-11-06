@@ -200,8 +200,8 @@ body {
 }
 
 #myBtn:hover {
+  background-color: var(--lightest-color);
   color: var(--dark-color);
-  background-color: var(var(--lightest-color))
 }
 
 #popular-dogs, #top-dogs {
@@ -255,7 +255,7 @@ body {
     border: 1px solid #888;
     width: 85vw;
     height: 90vh;
-    text-align: left;
+    text-align: center;
     overflow: auto;
     display: flex;
     /* flex-wrap: flex; */
@@ -278,14 +278,60 @@ body {
     /* margin-left: 2vw; */
   }
 
+  #modal-responsive-bottom-left {
+    width: 30vw;
+    float: left;
+    font-size: 1rem;
+  }
+
+  #like-button {
+    background: transparent;
+    font-size: 2rem;
+    /* height: 60px;
+    width: 60px; */
+    border: none;
+    padding: none;
+    margin: 0;
+  }
+
+  .submit-button {
+    font-family: 'IBM Plex Sans', sans-serif !important;
+    background-color: var(--dark-color);
+    color: var(--lightest-color);
+    height: 2rem;
+    width: 9rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .comment-form input, textarea, .rating-input {
+    width: 10rem;
+    margin: 2px;
+    border-radius: 1%;
+    border: none;
+    font-family: 'IBM Plex Sans', sans-serif;
+    border: 2px var(--dark-color) solid;
+  }
+
+  .modal-rating, .modal-likes {
+    font-size: 1rem;
+  }
+
+
   #comments-ul {
     list-style-type: none;
-    max-width: 50vw;
+    max-width: 40vw;
     /* margin-top: 1vw; */
     text-align: left;
     float: right;
-    position: absolute;
+    margin-right: 3vw;
+    /* position: absolute;
     left: 50%;
-    top: 50%;
+    top: 50%; */
+  }
+
+  #comments-ul li {
+    padding: 0.25vw;
+    font-size: 0.9rem;
   }
 }
