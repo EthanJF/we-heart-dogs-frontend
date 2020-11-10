@@ -361,6 +361,14 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput, moda
     let mostCommentedDogsButton = document.querySelector("#commented-dogs")
     mostCommentedDogsButton.addEventListener("click",mostCommentedDogs)
 
+    function myFunction() {
+        var x = document.getElementById("nav-links");
+        if (x.style.display === "block") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "block";
+        }
+      }
 
 
 

@@ -37,7 +37,12 @@ body {
   margin-right: 6rem;
 }
 
-.nav-bar-list {
+
+#hamburger-menu {
+  display: none;
+}
+
+#nav-bar-list {
   list-style-type: none;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -51,7 +56,7 @@ body {
   height: 4vw;
 }
 
-.nav-bar-list h1, .nav-bar-list h3:hover {
+#nav-bar-list h1, #nav-bar-list h3:hover {
   cursor: pointer;
   color: #113f67;
 }
@@ -75,6 +80,8 @@ body {
   object-fit: contain;
   /* border: 5px var(--dark-color) solid; */
   float: left;
+  filter: drop-shadow(0px 0px 2px rgba(0,0,0,.3))
+          drop-shadow(0px 0px 20px rgba(0,0,0,.3));
 }
 
 .modal {
@@ -233,19 +240,26 @@ body {
     color: var(--darkest-color);
     font-family: 'Patua One', cursive;
     font-size: 4vw;
+    position: fixed;
+    left: 0;
+    display: block;
   }
-  .nav-bar-list {
+
+  #nav-bar-list {
     list-style-type: none;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    /* display: grid;
+    grid-template-columns: repeat(1, 1fr); */
     margin: 0;
     overflow: hidden;
     background-color: var(--lightest-color);
-    position: fixed;
-    top: 0;
+    position: relative;
+    /* top: 0; */
     width: 100%;
     font-size: 5vw;
-    height: 10vw;
+    /* height: 20vw; */
+  }
+  #nav-links {
+    display: none;
   }
 
   .modal-content {
@@ -269,6 +283,8 @@ body {
     object-fit: contain;
     /* border: 5px var(--dark-color) solid; */
     clear: both;
+    filter: drop-shadow(0px 0px 2px rgba(0,0,0,.3))
+          drop-shadow(0px 0px 20px rgba(0,0,0,.3));
   }
 
   #modal-right {
@@ -333,5 +349,40 @@ body {
   #comments-ul li {
     padding: 0.25vw;
     font-size: 0.9rem;
+  }
+
+  .navigation {
+    overflow: hidden;
+    /* background-color: #333; */
+    background-color: var(--lightest-color);
+    position: relative;
+    margin: 0;
+  }
+  
+  .links {
+    color: var(--lightest-color);
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+  }
+
+  #hamburger-menu {
+    background-color: var(--darkest-color);
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+
+  .navigation a:hover {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+  }
+
+  .active {
+    background-color: #4CAF50;
+    color: white;
   }
 }

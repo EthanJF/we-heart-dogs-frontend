@@ -5,18 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700|Patua+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <title>We ♥️ Dogs</title>
 </head>
 <body>
     <div class="navigation">
-        <ul class="nav-bar-list">
+        <ul id="nav-bar-list">
             <h1 id="logo">We <span id="heart" class="animated infinite heartBeat delay-2s">♥️</span> Dogs</h1>
-            <h3 id = "popular-dogs">Most Popular Dogs</h3>
-            <h3 id="top-dogs">Highest Rated Dogs</h3>
-            <h3 id="commented-dogs">Most Commented on Dogs</h3>
+            <div id="nav-links">
+                <h3 id="popular-dogs" class="links">Most Popular Dogs</h3>
+                <h3 id="top-dogs" class="links">Highest Rated Dogs</h3>
+                <h3 id="commented-dogs" class="links">Most Commented on Dogs</h3>
+            </div>
+ 
         </ul>
+       
     </div>
+    <a href="javascript:void(0);" id="hamburger-menu" class="icon links" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
 
     <div class="modal">
         <div class="modal-content" id="dog-modal">
