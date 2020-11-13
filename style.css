@@ -23,6 +23,7 @@ body {
 #logo {
   font-weight: bold;
   position: relative;
+  left: 0;
   margin: 0;
   padding-left: 10%;
   margin-top: 8px;
@@ -44,21 +45,29 @@ body {
 
 #nav-bar-list {
   list-style-type: none;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  /* justify-content: flex-start; */
+  /* grid-template-columns: repeat(4, 1fr); */
   margin: 0;
   overflow: hidden;
   background-color: var(--lightest-color);
   position: fixed;
+  right: 0;
   top: 0;
   width: 100%;
   font-size: 1.15vw;
   height: 4vw;
 }
 
-#nav-bar-list h1, #nav-bar-list h3:hover {
+#nav-bar-list h1, #nav-bar-list li:hover {
   cursor: pointer;
   color: #113f67;
+}
+
+#nav-links {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .dog-img {
@@ -252,14 +261,35 @@ body {
     margin: 0;
     overflow: hidden;
     background-color: var(--lightest-color);
-    position: relative;
+    position: fixed;
     /* top: 0; */
     width: 100%;
     font-size: 5vw;
-    /* height: 20vw; */
+    height: 10vw;
   }
   #nav-links {
+    list-style-type: none;
     display: none;
+    text-align: right;
+    position: fixed;
+    /* flex-direction: column; */
+    top: 7%;
+    right: 0;
+    /* margin: 0; */
+    padding: 3%;
+    background-color: var(--lightest-color);
+
+  }
+
+  #nav-links li {
+    font-size: 1rem;
+  }
+
+  #commented-dogs {
+    right: 0;
+    margin-right: 0;
+    padding-right: 0;
+    text-align: right;
   }
 
   .modal-content {
@@ -359,24 +389,23 @@ body {
     margin: 0;
   }
   
-  .links {
+
+
+  #hamburger-menu {
+    background-color: var(--darkest-color);
+    display: block;
+    position: fixed;
+    right: 0;
+    top: 0;
     color: var(--lightest-color);
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
     display: block;
   }
-
-  #hamburger-menu {
-    background-color: var(--darkest-color);
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
   
 
-  .navigation a:hover {
+  #hamburger-menu:hover {
     background-color: var(--light-color);
     color: var(--dark-color);
   }
@@ -384,5 +413,11 @@ body {
   .active {
     background-color: #4CAF50;
     color: white;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  #nav-links {
+    display: grid !important;
   }
 }
