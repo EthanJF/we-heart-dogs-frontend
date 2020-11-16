@@ -22,10 +22,10 @@ body {
 
 #logo {
   font-weight: bold;
-  position: relative;
+  position: fixed;
   left: 0;
   margin: 0;
-  padding-left: 10%;
+  padding-left: 7vw;
   margin-top: 8px;
   margin-right: 75px;
   margin-left: 0;
@@ -52,7 +52,7 @@ body {
   overflow: hidden;
   background-color: var(--lightest-color);
   position: fixed;
-  right: 0;
+  left: 0;
   top: 0;
   width: 100%;
   font-size: 1.15vw;
@@ -68,6 +68,13 @@ body {
   list-style-type: none;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  position: fixed;
+  left: 28vw;
+  gap: 3vw;
+}
+
+#top-dogs {
+  padding-left: 10%;
 }
 
 .dog-img {
@@ -231,7 +238,7 @@ body {
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   #dog-list {
-    margin-top: 4vw;
+    margin-top: 10vw;
     margin-right: 1%;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -248,7 +255,7 @@ body {
     margin-left: 0;
     color: var(--darkest-color);
     font-family: 'Patua One', cursive;
-    font-size: 4vw;
+    font-size: 5vw;
     position: fixed;
     left: 0;
     display: block;
@@ -275,9 +282,12 @@ body {
     /* flex-direction: column; */
     top: 7%;
     right: 0;
+    left: 50vw;
     /* margin: 0; */
-    padding: 3%;
+    margin: 0;
+    padding: 3% 3% 3% 0;
     background-color: var(--lightest-color);
+    /* width: 50vw; */
 
   }
 
