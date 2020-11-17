@@ -25,7 +25,7 @@ body {
   left: 0;
   top: 0;
   width: 100%;
-  font-size: 1.15vw;
+  /* font-size: 1.15vw; */
   height: 4vw;
 }
 
@@ -53,20 +53,17 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   position: fixed;
-  left: 28vw;
-  gap: 3vw;
+  left: 30vw;
+  gap: 6vw;
+  font-size: 1.4vw;
 }
 
 #top-dogs {
-  padding-left: 10%;
-}
-
-#popular-dogs, #top-dogs {
-  padding-left: 6%;
+  padding-left: 2vw;
 }
 
 #commented-dogs {
-  margin-right: 4rem;
+  padding-left: 4vw;
 }
 
 #hamburger-menu {
@@ -256,7 +253,7 @@ body {
     text-align: right;
     top: 7%;
     right: 0;
-    left: 50vw;
+    left: 60vw;
     margin: 0;
     padding: 3% 3% 3% 0;
     background-color: var(--lightest-color);
