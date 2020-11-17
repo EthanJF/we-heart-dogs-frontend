@@ -25,7 +25,6 @@ body {
   left: 0;
   top: 0;
   width: 100%;
-  /* font-size: 1.15vw; */
   height: 4vw;
 }
 
@@ -56,6 +55,11 @@ body {
   left: 30vw;
   gap: 6vw;
   font-size: 1.4vw;
+  top: 0;
+}
+
+#popular-dogs, #top-dogs, #commented-dogs {
+  margin-top: 1vw;
 }
 
 #top-dogs {
