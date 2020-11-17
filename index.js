@@ -291,7 +291,7 @@ let newComment = (dog, modalContent, modalResponsiveBottomLeft, modalRight) => {
             alert("Please enter a comment!");
             return false;
         } else {
-            createNewComment(dog, modalContent, authorInput, contentInput, modalRight)
+            createNewComment(dog, authorInput, contentInput, modalRight)
             commentForm.reset()
         }
     })
