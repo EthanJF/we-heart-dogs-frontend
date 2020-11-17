@@ -3,6 +3,7 @@ const dogModal = document.querySelector(".modal")
 const span = document.getElementsByClassName("close")[0];
 const fetchUrl = "http://localhost:3000"
 
+
 // initial fetch
 function allDogs(){
     fetch(`${fetchUrl}/dogs`)
@@ -14,14 +15,14 @@ function allDogs(){
     })
 }
 
-//Get the button:
+//Get the scroll button:
 scrollButton = document.getElementById("scroll-button");
 scrollButton.addEventListener("click", topFunction)
 
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function () { scrollFunction() };
 
-function scrollFunction() {
+let scrollFunction = () => {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         scrollButton.style.display = "block";
     } else {
@@ -30,11 +31,11 @@ function scrollFunction() {
 }
 
 // click to turn modal off
-span.onclick = function () {
+span.onclick = () => {
     dogModal.style.display = "none";
 }
 
-window.onclick = function (event) {
+window.onclick = (event) => {
     if (event.target == dogModal) {
         dogModal.style.display = "none";
     }
@@ -55,6 +56,83 @@ let clearDogs = () => {
     }
 }
 
+// initial load -- displays all fetched dogs
+let loadHome = () => {
+    clearDogs()
+    topFunction()
+    allDogs()
+}
+
+// nav bar: home
+let homeButton = document.querySelector("#logo")
+homeButton.addEventListener("click", () => loadHome())
+
+// nav bar: highest rated
+let topDogs = () => {
+    fetch(`${fetchUrl}/dogs`)
+    .then(r => r.json())
+    .then(allDogs => {
+        let sortedDogs = [...allDogs].sort((a, b) => (a.ratings.reduce((result, rating) => (result + rating.value), 0) / a.ratings.length < b.ratings.reduce((result, rating) => (result + rating.value), 0) / b.ratings.length) ? 1 : -1)
+        clearDogs()
+        topFunction()
+        sortedDogs.forEach((dog) => {
+            //create dog function
+            createDog(dog)
+        })
+    })
+}
+
+
+let topDogsButton = document.querySelector("#top-dogs")
+topDogsButton.addEventListener("click",topDogs)
+
+// nav bar: most popular
+let mostPopularDogs = () => {
+    fetch(`${fetchUrl}/dogs`)
+    .then(r => r.json())
+    .then(allDogs => {
+        let sortedDogs = [...allDogs].sort((a, b) => (a.likes.length < b.likes.length) ? 1 : -1)
+        clearDogs()
+        topFunction()
+        sortedDogs.forEach((dog) => {
+            //create dog function
+            createDog(dog)
+        })
+    })
+}
+
+let mostPopularDogsButton = document.querySelector("#popular-dogs")
+mostPopularDogsButton.addEventListener("click", mostPopularDogs)
+
+// nav bar: most commented
+let mostCommentedDogs =  () => {
+    fetch(`${fetchUrl}/dogs`)
+    .then(r => r.json())
+    .then(allDogs => {
+        let sortedDogs = [...allDogs].sort((a, b) => (a.comments.length < b.comments.length) ? 1 : -1)
+        clearDogs()
+        topFunction()
+        sortedDogs.forEach((dog) => {
+            //create dog function
+            createDog(dog)
+        })
+    })
+}
+
+let mostCommentedDogsButton = document.querySelector("#commented-dogs")
+mostCommentedDogsButton.addEventListener("click",mostCommentedDogs)
+
+
+//hamburger menu function for small screens
+let showResponsiveMenu = () => {
+    let x = document.getElementById("nav-links");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+
 // create dog
 let createDog = dog => {
     // create dog image
@@ -66,7 +144,6 @@ let createDog = dog => {
 
     // append
     dogListDiv.append(dogImg)
-
 }
 
 // show modal display event handler
@@ -74,20 +151,7 @@ let addEventListenerToDogImg = (dog, dogImg) => {
     dogImg.addEventListener("click", () => {
         showDog(dog)
     })
-}
-let newLike = async (dog) => {
-    let response = await fetch(`${fetchUrl}/likes`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify({
-            dog_id: dog.id
-        })
-    })
-    let postedLike = await response.json()
-}  
+} 
 
 // show modal display function
 let showDog = (thisDog) => {
@@ -187,6 +251,20 @@ let showDog = (thisDog) => {
 
 }
 
+// create new like
+let newLike = (dog) => {
+    fetch(`${fetchUrl}/likes`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            dog_id: dog.id
+        })
+    })
+}  
+
 // add comment 
 let newComment = (dog, modalContent, modalResponsiveBottomLeft, modalRight) => {
     // load comment form
@@ -262,7 +340,7 @@ let addEventListenerToAddRating = (ratingInput, submitButton, modalRating, dog) 
 }
 
 // create comment
-let createNewComment = async (dog, modalContent, authorInput, contentInput, modalRight) => {
+let createNewComment = async (dog, authorInput, contentInput, modalRight) => {
     let commentAuthor = authorInput.value
     let commentContent = contentInput.value
 
@@ -287,90 +365,5 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput, moda
     modalRight.append(commentsUl)
 }   
 
-    // initial load -- displays all fetched dogs
-    let loadHome = () => {
-        clearDogs()
-        topFunction()
-        allDogs()
-    }
-
-    // nav bar: home
-    let homeButton = document.querySelector("#logo")
-    homeButton.addEventListener("click", () => loadHome())
-
-    // nav bar: highest rated
-    let topDogs = () => {
-        fetch(`${fetchUrl}/dogs`)
-            .then(r => r.json())
-            .then(allDogs => {
-                let sortedDogs = [...allDogs].sort((a, b) => (a.ratings.reduce((result, rating) => (result + rating.value), 0) / a.ratings.length < b.ratings.reduce((result, rating) => (result + rating.value), 0) / b.ratings.length) ? 1 : -1)
-
-                clearDogs()
-                topFunction()
-
-                sortedDogs.forEach((dog) => {
-                    //create dog function
-                    createDog(dog)
-                })
-            })
-    }
-
-    
-    let topDogsButton = document.querySelector("#top-dogs")
-    topDogsButton.addEventListener("click",topDogs)
-
-    // nav bar: most popular
-    let mostPopularDogs = () => {
-        fetch(`${fetchUrl}/dogs`)
-            .then(r => r.json())
-            .then(allDogs => {
-                let sortedDogs = [...allDogs].sort((a, b) => (a.likes.length < b.likes.length) ? 1 : -1)
-
-                clearDogs()
-                topFunction()
-
-                sortedDogs.forEach((dog) => {
-                    //create dog function
-                    createDog(dog)
-                })
-            })
-
-    }
-
-   let mostPopularDogsButton = document.querySelector("#popular-dogs")
-   mostPopularDogsButton.addEventListener("click", mostPopularDogs)
-
-    // nav bar: most commented
-    let mostCommentedDogs =  () => {
-        fetch(`${fetchUrl}/dogs`)
-            .then(r => r.json())
-            .then(allDogs => {
-                let sortedDogs = [...allDogs].sort((a, b) => (a.comments.length < b.comments.length) ? 1 : -1)
-
-                clearDogs()
-                topFunction()
-
-                sortedDogs.forEach((dog) => {
-                    //create dog function
-                    createDog(dog)
-                })
-            })
-
-    }
-
-    let mostCommentedDogsButton = document.querySelector("#commented-dogs")
-    mostCommentedDogsButton.addEventListener("click",mostCommentedDogs)
-
-    function myFunction() {
-        var x = document.getElementById("nav-links");
-        if (x.style.display === "block") {
-          x.style.display = "none";
-        } else {
-          x.style.display = "block";
-        }
-      }
-
-
-
-    // runs initial page load
-    loadHome()
+// runs initial page load
+loadHome()
