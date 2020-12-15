@@ -74,10 +74,24 @@ body {
   display: none;
 }
 
+#buttonload {
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--lightest-color);
+  background-color: var(--darkest-color);
+  border: none;
+  padding: 12px 16px;
+  font-size: 2vw;
+  margin: auto;
+  text-align: center;
+  position: fixed;
+  left: 45%;
+  top: 45%;
+}
+
 #dog-list {
   margin-top: 4vw;
   margin-right: 1%;
-  display: grid;
+  display: block;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(25vw, auto);
   grid-gap: 1vw;
