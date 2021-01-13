@@ -10,34 +10,44 @@
     <title>We ♥️ Dogs</title>
 </head>
 <body>
-    <div class="navigation">
-        <ul id="nav-bar-list">
-            <h1 id="logo">We <span id="heart" class="animated infinite heartBeat delay-2s">♥️</span> Dogs</h1>
-            <ul id="nav-links">
-                <li><h3 id="popular-dogs">Most Popular</h3></li>
-                <li><h3 id="top-dogs">Highest Rated</h3></li>
-                <li><h3 id="commented-dogs">Most Comments</h3></li>
+    <div id="loading-div" class="show-loading-div">
+        <h1 id="logo-loading">We <span id="heart-loading">♥️</span> Dogs</h1>
+        <p>Loading...</p>
+        <div id="loading-symbol">
+            <div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        </div>
+    </div>
+    <div id="main-div" class="hide-main-div">
+        <div class="navigation">
+            <ul id="nav-bar-list">
+                <h1 id="logo-main">We <span id="heart" class="animated infinite heartBeat delay-2s">♥️</span> Dogs</h1>
+                <ul id="nav-links">
+                    <li><h3 id="popular-dogs">Most Popular</h3></li>
+                    <li><h3 id="top-dogs">Highest Rated</h3></li>
+                    <li><h3 id="commented-dogs">Most Comments</h3></li>
+                </ul>
+                <a href="javascript:void(0);" id="hamburger-menu" class="icon links" onclick="showResponsiveMenu()">
+                    <i class="fa fa-bars"></i>
+                  </a>
             </ul>
-            <a href="javascript:void(0);" id="hamburger-menu" class="icon links" onclick="showResponsiveMenu()">
-                <i class="fa fa-bars"></i>
-              </a>
-        </ul>
+        </div>
+    
+        <div id="dog-list">
+            <button id="buttonload">
+                <i class="fa fa-spinner fa-spin"></i> Loading
+              </button>
+            <!-- dog grid goes here -->
+        </div>
+    
+        <div class="modal">
+            <div class="modal-content" id="dog-modal">
+                <span class="close">&times;</span>
+              </div>
+        </div>
+    
+        <button id="scroll-button" title="Go to top">Top</button>
     </div>
 
-    <div id="dog-list">
-        <button id="buttonload">
-            <i class="fa fa-spinner fa-spin"></i> Loading
-          </button>
-        <!-- dog grid goes here -->
-    </div>
-
-    <div class="modal">
-        <div class="modal-content" id="dog-modal">
-            <span class="close">&times;</span>
-          </div>
-    </div>
-
-    <button id="scroll-button" title="Go to top">Top</button>
-    <script defer src="index.js"></script>
+<script defer src="index.js"></script>
 </body>
 </html>

@@ -1,8 +1,10 @@
+const loadingDiv = document.querySelector("#loading-div")
+const mainDiv = document.querySelector("#main-div")
 const dogListDiv = document.querySelector("#dog-list")
 const dogModal = document.querySelector(".modal")
 const span = document.getElementsByClassName("close")[0];
 const loadingButton = document.querySelector("#buttonload")
-const fetchUrl = "https://we-heart-dogs.herokuapp.com"
+const fetchUrl = "http://localhost:3000"
 
 
 
@@ -14,10 +16,9 @@ function allDogs(){
         allDogs.map(dog => {
             createDog(dog)
         })
-    }).then(
-        loadingButton.style.display = "none",
-        dogListDiv.style.display = "grid"
-    )
+        loadingDiv.className = "hide-loading-div",
+        mainDiv.className = "show-main-div"
+    })
 }
 
 //Get the scroll button:
@@ -69,7 +70,7 @@ let loadHome = () => {
 }
 
 // nav bar: home
-let homeButton = document.querySelector("#logo")
+let homeButton = document.querySelector("#logo-main")
 homeButton.addEventListener("click", () => loadHome())
 
 // nav bar: highest rated
