@@ -3,25 +3,28 @@ const mainDiv = document.querySelector("#main-div")
 const dogListDiv = document.querySelector("#dog-list")
 const dogModal = document.querySelector(".modal")
 const span = document.getElementsByClassName("close")[0];
-const loadingButton = document.querySelector("#buttonload")
 const fetchUrl = "https://we-heart-dogs.herokuapp.com/"
 
 
+let originalDogs = []
 
 // initial fetch
-function allDogs(){
+const fetchDogs = () => {
     fetch(`${fetchUrl}/dogs`)
     .then(r => r.json())
-    .then(allDogs => {
-        allDogs.map(dog => {
-            createDog(dog)
-        })
+    .then(resObj => {
+        originalDogs = resObj  
+        renderDogs(resObj) 
         setInterval(() => {
-        loadingDiv.className = "hide-loading-div",
-        mainDiv.className = "show-main-div"
-        }, 1000)
-        
+            loadingDiv.className = "hide-loading-div",
+            mainDiv.className = "show-main-div"
+            }, 1000)  
     })
+}
+
+//display all dogs
+const renderDogs = (theseDogs) => {
+    theseDogs.map(dog => createDog(dog))
 }
 
 //Get the scroll button:
@@ -69,7 +72,7 @@ let clearDogs = () => {
 let loadHome = () => {
     clearDogs()
     topFunction()
-    allDogs()
+    renderDogs(originalDogs)
 }
 
 // nav bar: home
@@ -78,17 +81,10 @@ homeButton.addEventListener("click", () => loadHome())
 
 // nav bar: highest rated
 let topDogs = () => {
-    fetch(`${fetchUrl}/dogs`)
-    .then(r => r.json())
-    .then(allDogs => {
-        let sortedDogs = [...allDogs].sort((a, b) => (a.ratings.reduce((result, rating) => (result + rating.value), 0) / a.ratings.length < b.ratings.reduce((result, rating) => (result + rating.value), 0) / b.ratings.length) ? 1 : -1)
-        clearDogs()
-        topFunction()
-        sortedDogs.forEach((dog) => {
-            //create dog function
-            createDog(dog)
-        })
-    })
+    let sortedDogs = [...originalDogs].sort((a, b) => (a.ratings.reduce((result, rating) => (result + rating.value), 0) / a.ratings.length < b.ratings.reduce((result, rating) => (result + rating.value), 0) / b.ratings.length) ? 1 : -1)
+    clearDogs()
+    topFunction()
+    renderDogs(sortedDogs)
 }
 
 
@@ -97,17 +93,10 @@ topDogsButton.addEventListener("click",topDogs)
 
 // nav bar: most popular
 let mostPopularDogs = () => {
-    fetch(`${fetchUrl}/dogs`)
-    .then(r => r.json())
-    .then(allDogs => {
-        let sortedDogs = [...allDogs].sort((a, b) => (a.likes.length < b.likes.length) ? 1 : -1)
-        clearDogs()
-        topFunction()
-        sortedDogs.forEach((dog) => {
-            //create dog function
-            createDog(dog)
-        })
-    })
+    let sortedDogs = [...originalDogs].sort((a, b) => (a.likes.length < b.likes.length) ? 1 : -1)
+    clearDogs()
+    topFunction()
+    renderDogs(sortedDogs)
 }
 
 let mostPopularDogsButton = document.querySelector("#popular-dogs")
@@ -115,17 +104,10 @@ mostPopularDogsButton.addEventListener("click", mostPopularDogs)
 
 // nav bar: most commented
 let mostCommentedDogs =  () => {
-    fetch(`${fetchUrl}/dogs`)
-    .then(r => r.json())
-    .then(allDogs => {
-        let sortedDogs = [...allDogs].sort((a, b) => (a.comments.length < b.comments.length) ? 1 : -1)
-        clearDogs()
-        topFunction()
-        sortedDogs.forEach((dog) => {
-            //create dog function
-            createDog(dog)
-        })
-    })
+    let sortedDogs = [...originalDogs].sort((a, b) => (a.comments.length < b.comments.length) ? 1 : -1)
+    clearDogs()
+    topFunction()
+    renderDogs(sortedDogs)
 }
 
 let mostCommentedDogsButton = document.querySelector("#commented-dogs")
@@ -375,4 +357,4 @@ let createNewComment = async (dog, authorInput, contentInput, modalRight) => {
 }   
 
 // runs initial page load
-loadHome()
+fetchDogs()
