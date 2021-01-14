@@ -31,24 +31,25 @@ body {
   text-align: center;
   position: fixed;
   top: 25%;
-  left: 40%;
+  left: 38%;
 }
 
 #loading-p {
-  font-size: 1vw;
+  font-size: 2vw;
 }
 
 #logo-loading {
   font-weight: bold;
   color: var(--darkest-color);
   font-family: 'Patua One', cursive;
-  font-size: 3.5vw;
+  font-size: 5vw;
   width: 100%;
   padding-left: 5%;
+  margin-bottom: 0;
 }
 
 #heart-loading {
-  font-size: 3vw;
+  font-size: 4vw;
 }
 
 
@@ -404,6 +405,32 @@ body {
 
 /* For small screens and mobile phones */
 @media only screen and (max-width: 768px) {
+
+  #loading-div {
+    text-align: center;
+    position: fixed;
+    top: 25%;
+    left: 25%;
+  }
+
+  #loading-p {
+    font-size: 5vw;
+  }
+  
+  #logo-loading {
+    font-weight: bold;
+    color: var(--darkest-color);
+    font-family: 'Patua One', cursive;
+    font-size: 10vw;
+    width: 100%;
+    padding-left: 5%;
+    margin-bottom: 0;
+  }
+  
+  #heart-loading {
+    font-size: 8vw;
+  }
+
   .navigation {
     overflow: hidden;
     background-color: var(--lightest-color);

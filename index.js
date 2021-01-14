@@ -4,7 +4,7 @@ const dogListDiv = document.querySelector("#dog-list")
 const dogModal = document.querySelector(".modal")
 const span = document.getElementsByClassName("close")[0];
 const loadingButton = document.querySelector("#buttonload")
-const fetchUrl = "http://localhost:3000"
+const fetchUrl = "https://we-heart-dogs.herokuapp.com/"
 
 
 
@@ -16,8 +16,11 @@ function allDogs(){
         allDogs.map(dog => {
             createDog(dog)
         })
+        setInterval(() => {
         loadingDiv.className = "hide-loading-div",
         mainDiv.className = "show-main-div"
+        }, 1000)
+        
     })
 }
 
