@@ -3,7 +3,7 @@ const mainDiv = document.querySelector("#main-div")
 const dogListDiv = document.querySelector("#dog-list")
 const dogModal = document.querySelector(".modal")
 const span = document.getElementsByClassName("close")[0];
-const fetchUrl = "https://we-heart-dogs.herokuapp.com/"
+const fetchUrl = "http://localhost:3000"
 
 
 let originalDogs = []
