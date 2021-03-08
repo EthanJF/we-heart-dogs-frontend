@@ -27,6 +27,19 @@ body {
   display: block;
 }
 
+#heart-icon-loading {
+  width: 4vw;
+}
+#heart-icon {
+  width: 2vw;
+}
+
+#heart-icon-like {
+    width: 3.5vw;
+    text-align: center;
+    margin-top: 0.5vw;
+}
+
 #loading-div {
   text-align: center;
   position: fixed;

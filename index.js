@@ -167,7 +167,7 @@ let showDog = (thisDog) => {
         // add like button
         let likeButton = document.createElement("button")
         likeButton.setAttribute("id", 'like-button')
-        likeButton.innerText = "♥️"
+        likeButton.innerHTML = `<img id="heart-icon-like" src="heart_icon2.png"/>`
 
         likeButton.addEventListener("mousedown", () => {
             likeButton.classList.add('animated', 'heartBeat')
